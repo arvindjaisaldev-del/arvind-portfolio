@@ -402,3 +402,18 @@ document.addEventListener('DOMContentLoaded', function () {
   ==================================================== */
 
 });  // End DOMContentLoaded
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAnZNVtdj84rVuEUdg_ec4Uqn908nXHiDg",
+  authDomain: "arvind-jaisal.firebaseapp.com",
+  projectId: "arvind-jaisal",
+  storageBucket: "arvind-jaisal.firebasestorage.app",
+  messagingSenderId: "1066779350329",
+  appId: "1:1066779350329:web:7410192ae56f822314c4e8",
+  measurementId: "G-TPERH32G4K"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);

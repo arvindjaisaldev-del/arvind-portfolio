@@ -17,6 +17,19 @@
 /* =====================================================
    01. DOM READY — All code runs after page loads
 ===================================================== */
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAnZNVtdj84rVuEUdg_ec4Uqn908nXHiDg",
+  authDomain: "arvind-jaisal.firebaseapp.com",
+  databaseURL: "https://arvind-jaisal-default-rtdb.firebaseio.com",
+  projectId: "arvind-jaisal",
+  storageBucket: "arvind-jaisal.firebasestorage.app",
+  messagingSenderId: "1066779350329",
+  appId: "1:1066779350329:web:7410192ae56f822314c4e8",
+  measurementId: "G-TPERH32G4K"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -260,20 +273,19 @@ document.addEventListener('DOMContentLoaded', function () {
   if (messageInput) messageInput.addEventListener('input', function () { clearError(messageInput, messageError); });
 
   /* --- Handle form submit --- */
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+  if (!validName || !validEmail || !validSubject || !validMessage) {
+  return;
+}
 
-      // Validate all fields
-      const validName    = validateField(nameInput,    nameError,    'name');
-      const validEmail   = validateField(emailInput,   emailError,   'email');
-      const validSubject = validateField(subjectInput, subjectError, 'subject');
-      const validMessage = validateField(messageInput, messageError, 'message');
+await addDoc(collection(db, "contacts"), {
+  name: nameInput.value,
+  email: emailInput.value,
+  subject: subjectInput.value,
+  message: messageInput.value,
+  createdAt: serverTimestamp()
+});
 
-      if (!validName || !validEmail || !validSubject || !validMessage) {
-        return;
-      }
-
+// yahan tumhara purana success code rahega
       /* ==================================================
          FORM SUBMISSION
          
